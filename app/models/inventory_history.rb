@@ -4,19 +4,12 @@
 # This source is subject to the Madani Digital
 # All other rights reserved.
 #
-# @file_name app/models/user.rb
+# @file_name app/models/inventory_history.rb
 # @author Ginanjar CK
-# @note User model
+# @note InventoryHistory model
 # =============================================================================
 
-class User < ApplicationRecord
-  enum role: [:user, :vip, :admin]
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
-
+class InventoryHistory < ApplicationRecord
   # Setup transient attributes for your model (attr_accessor)
   # e.g.
   # attr_accessor :temp
@@ -25,8 +18,10 @@ class User < ApplicationRecord
   # e.g.
   # validates_presence_of :name
   # validates_uniqueness_of :name, case_sensitive: false
-  validates :email, presence: true
-  validates :contact_id, presence: true
+  validates :inventory_id, presence: true
+  validates :transaction_date, presence: true
+  validates :type, presence: true
+  validates :quantity, presence: true
 
   # Setup relations to other models
   # e.g.
@@ -34,8 +29,7 @@ class User < ApplicationRecord
   # has_many :users
   # has_and_belongs_to_many :users
   # has_many :employees, through: :users
-  belongs_to :contact
-  has_many :user_roles
+  belongs_to :inventory
 
   #
   # Setup scopes
@@ -48,12 +42,8 @@ class User < ApplicationRecord
   #
   # Setup callbacks
   #
-  after_initialize :set_default_role, :if => :new_record?
 
   #
   # Setup additional methods
   #
-  def set_default_role
-    self.role ||= :user
-  end
 end
