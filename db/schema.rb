@@ -418,7 +418,7 @@ ActiveRecord::Schema.define(version: 20170413023609) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",      default: 0
-    t.integer  "contact_id",                          null: false
+    t.integer  "contact_id"
     t.index ["contact_id"], name: "index_users_on_contact_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
