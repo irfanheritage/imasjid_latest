@@ -1,4 +1,4 @@
-# =============================================================================
+  # =============================================================================
 # Copyright (c) 2017 All Right Reserved, Madani Digital
 #
 # This source is subject to the Madani Digital
@@ -20,8 +20,8 @@ class Address < ApplicationRecord
   # validates_uniqueness_of :name, case_sensitive: false
   validates :ident_name,
     presence: true,
-    uniqueness: { case_sensitive: false },
-    format: { with: IDENT_NAME_FORMAT }
+    uniqueness: { case_sensitive: false }
+    # format: { with: IDENT_NAME_FORMAT }
   validates :name, presence: true
   validates :district_id, presence: true
   validates :city_id, presence: true
